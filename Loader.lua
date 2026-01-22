@@ -1,94 +1,146 @@
-if game:GetService("CoreGui"):FindFirstChild("MeMeRAnnounce") then return end
+if gethui and gethui():FindFirstChild("MeMeRLoader") or game:GetService("CoreGui"):FindFirstChild("MeMeRLoader") then return end
 local Supports = {}
 
 local Scriptname = Supports[tostring(game.PlaceId)] or "Universal.lua"
 getgenv().MeMeRStorage = "https://raw.githubusercontent.com/MeMeZLand/MeMeR/refs/heads/main/"
 local Announcement = loadstring(game:HttpGet(getgenv().MeMeRStorage.."ScriptInfo.lua"))().Announcement
 
-local MeMeRAnnounce = Instance.new("ScreenGui")
-local Main = Instance.new("Frame")
-local Title = Instance.new("TextLabel")
-local UICorner = Instance.new("UICorner")
+local TweenService = game:GetService("TweenService")
+local fadeTweenInfo = TweenInfo.new(0.2, Enum.EasingStyle.Quad, Enum.EasingDirection.Out)
+local btnHoverTweenInfo = TweenInfo.new(0.1, Enum.EasingStyle.Quad)
+
+local MeMeRLoader = Instance.new("ScreenGui")
+local MainFrame = Instance.new("Frame")
+local StatusBar = Instance.new("Frame")
+local ExecutorName = Instance.new("TextLabel")
+local ContentArea = Instance.new("Frame")
 local Content = Instance.new("TextLabel")
-local Confirm = Instance.new("TextButton")
-local UICorner_2 = Instance.new("UICorner")
+local BtnArea = Instance.new("Frame")
+local ConfirmBtn = Instance.new("TextButton")
+local CancelBtn = Instance.new("TextButton")
+local ExploitBtn = Instance.new("TextButton")
 
-MeMeRAnnounce.Name = "MeMeRAnnounce"
-MeMeRAnnounce.Parent = game:GetService("CoreGui")
+MeMeRLoader.Name = "MeMeRLoader"
+MeMeRLoader.Parent = gethui and gethui() or game:GetService("CoreGui")
+MeMeRLoader.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
 
-Main.Name = "Main"
-Main.Parent = MeMeRAnnounce
-Main.AnchorPoint = Vector2.new(0.5, 0.5)
-Main.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-Main.BorderColor3 = Color3.fromRGB(0, 0, 0)
-Main.BorderSizePixel = 0
-Main.Position = UDim2.new(0.5, 0, 0.5, 0)
-Main.Size = UDim2.new(0.4, 0, 0.6, 0)
+MainFrame.Name = "MainFrame"
+MainFrame.Parent = MeMeRLoader
+MainFrame.Active = true
+MainFrame.BackgroundColor3 = Color3.fromRGB(25, 25, 25)
+MainFrame.BorderColor3 = Color3.fromRGB(102, 102, 102)
+MainFrame.BorderSizePixel = 2
+MainFrame.ClipsDescendants = true
+MainFrame.Position = UDim2.new(0.5, -275, 0.5, -110)
+MainFrame.Size = UDim2.new(0, 550, 0, 220)
 
-Title.Name = "Title"
-Title.Parent = Main
-Title.AnchorPoint = Vector2.new(0.5, 0.5)
-Title.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-Title.BackgroundTransparency = 1.000
-Title.BorderColor3 = Color3.fromRGB(0, 0, 0)
-Title.BorderSizePixel = 0
-Title.Position = UDim2.new(0.5, 0, 0.0399361029, 0)
-Title.Size = UDim2.new(0.239520952, 0, 0.0798722059, 0)
-Title.Font = Enum.Font.SourceSans
-Title.Text = "公告"
-Title.TextColor3 = Color3.fromRGB(0, 0, 0)
-Title.TextScaled = true
-Title.TextSize = 45.000
-Title.TextWrapped = true
+StatusBar.Name = "StatusBar"
+StatusBar.Parent = MainFrame
+StatusBar.BackgroundColor3 = Color3.fromRGB(45, 45, 45)
+StatusBar.BorderColor3 = Color3.fromRGB(102, 102, 102)
+StatusBar.Size = UDim2.new(1, 0, 0, 35)
 
-UICorner.CornerRadius = UDim.new(0.0500000007, 0)
-UICorner.Parent = Main
+ExecutorName.Name = "ExecutorName"
+ExecutorName.Parent = StatusBar
+ExecutorName.BackgroundTransparency = 1.000
+ExecutorName.Position = UDim2.new(0, 10, 0, 0)
+ExecutorName.Size = UDim2.new(0.699999988, 0, 1, 0)
+ExecutorName.Font = Enum.Font.SourceSans
+ExecutorName.Text = "公告"
+ExecutorName.TextColor3 = Color3.fromRGB(255, 255, 255)
+ExecutorName.TextSize = 16.000
+ExecutorName.TextXAlignment = Enum.TextXAlignment.Left
+
+ContentArea.Name = "ContentArea"
+ContentArea.Parent = MainFrame
+ContentArea.BackgroundColor3 = Color3.fromRGB(25, 25, 25)
+ContentArea.BorderColor3 = Color3.fromRGB(102, 102, 102)
+ContentArea.Position = UDim2.new(0, 0, 0, 35)
+ContentArea.Size = UDim2.new(1, 0, 0, 145)
 
 Content.Name = "Content"
-Content.Parent = Main
-Content.AnchorPoint = Vector2.new(0.5, 0.5)
-Content.BackgroundColor3 = Color3.fromRGB(244, 244, 244)
-Content.BorderColor3 = Color3.fromRGB(0, 0, 0)
-Content.BorderSizePixel = 0
-Content.Position = UDim2.new(0.5, 0, 0.539936125, 0)
-Content.Size = UDim2.new(1, 0, 0.920127809, 0)
+Content.Parent = ContentArea
+Content.BackgroundTransparency = 1.000
+Content.Position = UDim2.new(0, 10, 0, 15)
+Content.Size = UDim2.new(1, -20, 0.241379306, 80)
 Content.Font = Enum.Font.SourceSans
 Content.Text = Announcement
-Content.TextColor3 = Color3.fromRGB(0, 0, 0)
-Content.TextScaled = false
-Content.TextSize = 10.000
+Content.TextColor3 = Color3.fromRGB(204, 204, 204)
+Content.TextSize = 14.000
 Content.TextWrapped = true
 Content.TextXAlignment = Enum.TextXAlignment.Left
 Content.TextYAlignment = Enum.TextYAlignment.Top
 
-Confirm.Name = "Confirm"
-Confirm.Parent = Main
-Confirm.AnchorPoint = Vector2.new(0.5, 0.5)
-Confirm.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-Confirm.BorderColor3 = Color3.fromRGB(0, 0, 0)
-Confirm.BorderSizePixel = 0
-Confirm.Position = UDim2.new(0.5, 0, 0.920127809, 0)
-Confirm.Size = UDim2.new(0.330538929, 0, 0.127795532, 0)
-Confirm.AutoButtonColor = false
-Confirm.Font = Enum.Font.SourceSans
-Confirm.Text = "我已知晓"
-Confirm.TextColor3 = Color3.fromRGB(0, 0, 0)
-Confirm.TextScaled = true
-Confirm.TextSize = 14.000
-Confirm.TextWrapped = true
+BtnArea.Name = "BtnArea"
+BtnArea.Parent = MainFrame
+BtnArea.BackgroundColor3 = Color3.fromRGB(45, 45, 45)
+BtnArea.BorderColor3 = Color3.fromRGB(102, 102, 102)
+BtnArea.Position = UDim2.new(0, 0, 1, -40)
+BtnArea.Size = UDim2.new(1, 0, 0, 40)
 
-UICorner_2.CornerRadius = UDim.new(0.0500000007, 0)
-UICorner_2.Parent = Confirm
+ConfirmBtn.Name = "ConfirmBtn"
+ConfirmBtn.Parent = BtnArea
+ConfirmBtn.BackgroundColor3 = Color3.fromRGB(63, 63, 63)
+ConfirmBtn.BorderColor3 = Color3.fromRGB(102, 102, 102)
+ConfirmBtn.Position = UDim2.new(1, -130, 0.5, -15)
+ConfirmBtn.Size = UDim2.new(0, 120, 0, 30)
+ConfirmBtn.Font = Enum.Font.SourceSans
+ConfirmBtn.Text = "我已知晓"
+ConfirmBtn.TextColor3 = Color3.fromRGB(255, 255, 255)
+ConfirmBtn.TextSize = 16.000
+ConfirmBtn.AutoButtonColor = false
 
-Confirm.MouseEnter:Connect(function()
-    game:GetService("TweenService"):Create(Confirm, TweenInfo.new(0.25), {Transparency = 0.75}):Play()
+CancelBtn.Name = "CancelBtn"
+CancelBtn.Parent = BtnArea
+CancelBtn.BackgroundColor3 = Color3.fromRGB(63, 63, 63)
+CancelBtn.BorderColor3 = Color3.fromRGB(102, 102, 102)
+CancelBtn.Position = UDim2.new(1, -260, 0.5, -15)
+CancelBtn.Size = UDim2.new(0, 120, 0, 30)
+CancelBtn.Font = Enum.Font.SourceSans
+CancelBtn.Text = "取消加载"
+CancelBtn.TextColor3 = Color3.fromRGB(255, 255, 255)
+CancelBtn.TextSize = 16.000
+CancelBtn.AutoButtonColor = false
+
+ExploitBtn.Name = "ExploitBtn"
+ExploitBtn.Parent = BtnArea
+ExploitBtn.BackgroundColor3 = Color3.fromRGB(63, 63, 63)
+ExploitBtn.BorderColor3 = Color3.fromRGB(102, 102, 102)
+ExploitBtn.Position = UDim2.new(0.25454545, -130, 0.5, -15)
+ExploitBtn.Size = UDim2.new(0, 120, 0, 30)
+ExploitBtn.Font = Enum.Font.SourceSans
+ExploitBtn.Text = "加载漏洞利用版本"
+ExploitBtn.TextColor3 = Color3.fromRGB(255, 255, 255)
+ExploitBtn.TextSize = 16.000
+ExploitBtn.AutoButtonColor = false
+
+ExploitBtn.Visible = false
+
+local function handleBtnHover(btn, isEnter)
+    local targetColor = isEnter and Color3.fromRGB(85, 85, 85) or Color3.fromRGB(63, 63, 63)
+    TweenService:Create(btn, btnHoverTweenInfo, {BackgroundColor3 = targetColor}):Play()
+end
+
+local function closeUI()
+    local fadeTween = TweenService:Create(MainFrame, fadeTweenInfo, {Transparency = 1})
+    fadeTween:Play()
+    fadeTween.Completed:Connect(function()
+        MeMeRLoader:Destroy()
+    end)
+end
+
+CancelBtn.MouseButton1Click:Connect(function()
+    closeUI()
 end)
 
-Confirm.MouseLeave:Connect(function()
-    game:GetService("TweenService"):Create(Confirm, TweenInfo.new(0.25), {Transparency = 0}):Play()
-end)
-
-Confirm.MouseButton1Click:Connect(function()
-    MeMeRAnnounce:Destroy()
+ConfirmBtn.MouseButton1Click:Connect(function()
+    closeUI()
     loadstring(game:HttpGet(getgenv().MeMeRStorage.."Scripts/"..Scriptname))()
 end)
+
+CancelBtn.MouseEnter:Connect(function() handleBtnHover(CancelBtn, true) end)
+CancelBtn.MouseLeave:Connect(function() handleBtnHover(CancelBtn, false) end)
+ConfirmBtn.MouseEnter:Connect(function() handleBtnHover(ConfirmBtn, true) end)
+ConfirmBtn.MouseLeave:Connect(function() handleBtnHover(ConfirmBtn, false) end)
+ExploitBtn.MouseEnter:Connect(function() handleBtnHover(ExploitBtn, true) end)
+ExploitBtn.MouseLeave:Connect(function() handleBtnHover(ExploitBtn, false) end)
