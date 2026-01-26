@@ -114,7 +114,7 @@ ExploitBtn.TextColor3 = Color3.fromRGB(255, 255, 255)
 ExploitBtn.TextSize = 16.000
 ExploitBtn.AutoButtonColor = false
 
-ExploitBtn.Visible = false
+--ExploitBtn.Visible = false
 
 local function handleBtnHover(btn, isEnter)
     local targetColor = isEnter and Color3.fromRGB(85, 85, 85) or Color3.fromRGB(63, 63, 63)
@@ -136,6 +136,11 @@ end)
 ConfirmBtn.MouseButton1Click:Connect(function()
     closeUI()
     loadstring(game:HttpGet(getgenv().MeMeRStorage.."Scripts/"..Scriptname))()
+end)
+
+ExploitBtn.MouseButton1Click:Connect(function()
+    closeUI()
+    loadstring(game:HttpGet(getgenv().MeMeRStorage.."Scripts/ExploitVer.lua"))
 end)
 
 CancelBtn.MouseEnter:Connect(function() handleBtnHover(CancelBtn, true) end)
