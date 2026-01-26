@@ -2497,6 +2497,8 @@ Compkiller.Hash = function(str)
 end;
 
 function Compkiller:CacheImage(id) 
+	return id
+	--[[
 	if not Compkiller.SecureMode or not id or not id:byte() then
 		return "";
 	end;
@@ -2533,6 +2535,7 @@ function Compkiller:CacheImage(id)
 	end;
 
 	return "";
+	]]
 end;
 
 function Compkiller:Security(directory) -- Security Mode
