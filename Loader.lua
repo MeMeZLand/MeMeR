@@ -140,7 +140,7 @@ end)
 
 ExploitBtn.MouseButton1Click:Connect(function()
     closeUI()
-    loadstring(game:HttpGet(getgenv().MeMeRStorage.."Scripts/ExploitVer.lua"))
+    loadstring(game:HttpGet(getgenv().MeMeRStorage.."Scripts/ExploitVer.lua"))()
 end)
 
 CancelBtn.MouseEnter:Connect(function() handleBtnHover(CancelBtn, true) end)
