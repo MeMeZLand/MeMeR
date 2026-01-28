@@ -37,15 +37,16 @@ local function activateBypass()
                     detectionMethod,
                     function(trigger, details, preventCrash)
                         if trigger ~= '_' and BypassManager.IsVerbose then
+                            --[[
                             warn(
                                 'Adonis检测到了',
                                 trigger,
                                 '详细::',
                                 details
                             )
+                            ]]
                         end
                         if string.find(details, "Tamper") then
-                            warn("傻逼adonis检测到了Tamper！！！")
                             return task.wait(9e9)
                         else
                             return true
@@ -65,7 +66,7 @@ local function activateBypass()
                 BypassManager.TerminateFunction = killMethod
                 wrapFunction(killMethod, function(cause)
                     if BypassManager.IsVerbose then
-                        warn('Adonis尝试踢出您, 原因: ', cause)
+                        --warn('Adonis尝试踢出您, 原因: ', cause)
                     end
                     return nil
                 end)
@@ -84,7 +85,7 @@ local function activateBypass()
                 and LevelOrFunc == BypassManager.FlagFunction
             then
                 if BypassManager.IsVerbose then
-                    warn('😨')
+                    --warn('😨')
                 end
                 return coroutine.yield(coroutine.running())
             end
@@ -100,6 +101,7 @@ end
 
 activateBypass()
 
+--[[
 print(
     string.format(
         '[Adonis绕过状态] 关闭检测: %s | 检测击杀玩家防御: %s | Debug 信息钩子: %s',
@@ -108,3 +110,4 @@ print(
         tostring(StatusTracker.DebugInfoIntercepted)
     )
 )
+]]
