@@ -13,7 +13,7 @@
         Secure mode: this will cache all images to your workspace and disabled blur
 --]]
 
---Last edit 1/23/2026 3:26:54 UTC+8
+--Last edit 2/11/2026 22:18:19 UTC+8
 
 --- Export Types ---
 
@@ -9833,3 +9833,4 @@ function Compkiller.newNotify()
 end;
 
 return Compkiller, UIVersion
+
