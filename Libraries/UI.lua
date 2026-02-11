@@ -3218,6 +3218,23 @@ function Compkiller:_LoadOption(Value , TabSignal)
 			Config.Callback(KeyName);
 		end);
 
+		UserInputService.InputBegan:Connect(function(input, gpe)
+			if gpe then return end
+			
+			local KeyCode = typeof(Config.Default) == "EnumItem" and Config.Default or Enum.KeyCode[Config.Default]
+			if typeof(KeyCode) == "EnumItem" then
+				if input.KeyCode == KeyCode then
+					Config.Callback(Config.Default);
+				end
+			elseif Config.Default == "MouseLeft" or Config.Default == "MouseRight" then
+				if Config.Default == "MouseLeft" and input.UserInputType == Enum.UserInputType.MouseButton1 then
+					Config.Callback(Config.Default);
+				elseif Config.Default == "MouseRight" and input.UserInputType == Enum.UserInputType.MouseButton2 then
+					Config.Callback(Config.Default);
+				end
+			end
+		end)
+
 		local Args = {};
 
 		Args.Flag = Config.Flag;
@@ -4022,6 +4039,23 @@ function Compkiller:_LoadElement(Parent , EnabledLine , Signal)
 
 			Config.Callback(KeyName);
 		end);
+
+		UserInputService.InputBegan:Connect(function(input, gpe)
+			if gpe then return end
+			
+			local KeyCode = typeof(Config.Default) == "EnumItem" and Config.Default or Enum.KeyCode[Config.Default]
+			if typeof(KeyCode) == "EnumItem" then
+				if input.KeyCode == KeyCode then
+					Config.Callback(Config.Default);
+				end
+			elseif Config.Default == "MouseLeft" or Config.Default == "MouseRight" then
+				if Config.Default == "MouseLeft" and input.UserInputType == Enum.UserInputType.MouseButton1 then
+					Config.Callback(Config.Default);
+				elseif Config.Default == "MouseRight" and input.UserInputType == Enum.UserInputType.MouseButton2 then
+					Config.Callback(Config.Default);
+				end
+			end
+		end)
 
 		local Args = {};
 
