@@ -13,7 +13,7 @@
         Secure mode: this will cache all images to your workspace and disabled blur
 --]]
 
---Last edit 2/11/2026 22:18:19 UTC+8
+--Last edit 1/23/2026 3:26:54 UTC+8
 
 --- Export Types ---
 
@@ -3218,6 +3218,8 @@ function Compkiller:_LoadOption(Value , TabSignal)
 			Config.Callback(KeyName);
 		end);
 
+		--[[
+
 		UserInputService.InputBegan:Connect(function(input, gpe)
 			if gpe then return end
 			
@@ -3234,6 +3236,8 @@ function Compkiller:_LoadOption(Value , TabSignal)
 				end
 			end
 		end)
+
+		]]
 
 		local Args = {};
 
@@ -4040,6 +4044,8 @@ function Compkiller:_LoadElement(Parent , EnabledLine , Signal)
 			Config.Callback(KeyName);
 		end);
 
+		--[[
+
 		UserInputService.InputBegan:Connect(function(input, gpe)
 			if gpe then return end
 			
@@ -4056,6 +4062,8 @@ function Compkiller:_LoadElement(Parent , EnabledLine , Signal)
 				end
 			end
 		end)
+
+		]]
 
 		local Args = {};
 
@@ -9833,4 +9841,3 @@ function Compkiller.newNotify()
 end;
 
 return Compkiller, UIVersion
-
