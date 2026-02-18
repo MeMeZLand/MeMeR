@@ -1,7 +1,12 @@
 if gethui and gethui():FindFirstChild("MeMeRLoader") or game:GetService("CoreGui"):FindFirstChild("MeMeRLoader") then return end
-local Supports = {}
 
-local Scriptname = Supports[tostring(game.PlaceId)] or "Universal.lua"
+getgenv().SCRIPT_KEY = "KEYLESS"
+
+local Supports = {
+    ["Universal"] = "https://api.jnkie.com/api/v1/luascripts/public/2628fda2a83cbe10dfe4addd5c8b0a8e7a45ae6cdf7ea11a3a8e042ba6156e40/download"
+}
+
+local ScriptLink = Supports[tostring(game.PlaceId)] or Supports["Universal"]
 getgenv().MeMeRStorage = "https://raw.githubusercontent.com/MeMeZLand/MeMeR/refs/heads/main/"
 local Announcement = loadstring(game:HttpGet(getgenv().MeMeRStorage.."ScriptInfo.lua"))().Announcement
 
@@ -19,8 +24,6 @@ local BtnArea = Instance.new("Frame")
 local ConfirmBtn = Instance.new("TextButton")
 local CancelBtn = Instance.new("TextButton")
 local ExploitBtn = Instance.new("TextButton")
-local Image = Instance.new("ImageLabel")
-
 
 MeMeRLoader.Name = "MeMeRLoader"
 MeMeRLoader.Parent = gethui and gethui() or game:GetService("CoreGui")
@@ -63,7 +66,6 @@ ContentArea.Size = UDim2.new(1, 0, 0, 145)
 Content.Name = "Content"
 Content.Parent = ContentArea
 Content.BackgroundTransparency = 1.000
-Content.LayoutOrder = 2
 Content.Position = UDim2.new(0, 10, 0, 15)
 Content.Size = UDim2.new(1, -20, 0.241379306, 80)
 Content.Font = Enum.Font.SourceSans
@@ -87,11 +89,11 @@ ConfirmBtn.BackgroundColor3 = Color3.fromRGB(63, 63, 63)
 ConfirmBtn.BorderColor3 = Color3.fromRGB(102, 102, 102)
 ConfirmBtn.Position = UDim2.new(1, -130, 0.5, -15)
 ConfirmBtn.Size = UDim2.new(0, 120, 0, 30)
-ConfirmBtn.AutoButtonColor = false
 ConfirmBtn.Font = Enum.Font.SourceSans
 ConfirmBtn.Text = "加载正常版本"
 ConfirmBtn.TextColor3 = Color3.fromRGB(255, 255, 255)
 ConfirmBtn.TextSize = 16.000
+ConfirmBtn.AutoButtonColor = false
 
 CancelBtn.Name = "CancelBtn"
 CancelBtn.Parent = BtnArea
@@ -99,11 +101,11 @@ CancelBtn.BackgroundColor3 = Color3.fromRGB(63, 63, 63)
 CancelBtn.BorderColor3 = Color3.fromRGB(102, 102, 102)
 CancelBtn.Position = UDim2.new(1, -260, 0.5, -15)
 CancelBtn.Size = UDim2.new(0, 120, 0, 30)
-CancelBtn.AutoButtonColor = false
 CancelBtn.Font = Enum.Font.SourceSans
 CancelBtn.Text = "取消加载"
 CancelBtn.TextColor3 = Color3.fromRGB(255, 255, 255)
 CancelBtn.TextSize = 16.000
+CancelBtn.AutoButtonColor = false
 
 ExploitBtn.Name = "ExploitBtn"
 ExploitBtn.Parent = BtnArea
@@ -111,24 +113,13 @@ ExploitBtn.BackgroundColor3 = Color3.fromRGB(63, 63, 63)
 ExploitBtn.BorderColor3 = Color3.fromRGB(102, 102, 102)
 ExploitBtn.Position = UDim2.new(0.25454545, -130, 0.5, -15)
 ExploitBtn.Size = UDim2.new(0, 120, 0, 30)
-ExploitBtn.AutoButtonColor = false
 ExploitBtn.Font = Enum.Font.SourceSans
 ExploitBtn.Text = "加载漏洞利用版本"
 ExploitBtn.TextColor3 = Color3.fromRGB(255, 255, 255)
 ExploitBtn.TextSize = 16.000
+ExploitBtn.AutoButtonColor = false
 
-writefile("GB.png", request({Url = getgenv().MeMeRStorage.."Assets/GB.png", Method = "GET"}).Body)
-
-Image.Name = "Image"
-Image.Parent = MainFrame
-Image.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-Image.BackgroundTransparency = 1.000
-Image.BorderColor3 = Color3.fromRGB(0, 0, 0)
-Image.BorderSizePixel = 0
-Image.LayoutOrder = 1
-Image.Size = UDim2.new(1, 0, 1, 0)
-Image.Image = getcustomasset("GB.png")
-Image.ScaleType = Enum.ScaleType.Fit
+--ExploitBtn.Visible = false
 
 local function handleBtnHover(btn, isEnter)
     local targetColor = isEnter and Color3.fromRGB(85, 85, 85) or Color3.fromRGB(63, 63, 63)
@@ -149,7 +140,7 @@ end)
 
 ConfirmBtn.MouseButton1Click:Connect(function()
     closeUI()
-    loadstring(game:HttpGet(getgenv().MeMeRStorage.."Scripts/"..Scriptname))()
+    loadstring(game:HttpGet(ScriptLink))()
 end)
 
 ExploitBtn.MouseButton1Click:Connect(function()
