@@ -3,7 +3,8 @@ if gethui and gethui():FindFirstChild("MeMeRLoader") or game:GetService("CoreGui
 getgenv().SCRIPT_KEY = "KEYLESS"
 
 local Supports = {
-    ["Universal"] = "https://api.jnkie.com/api/v1/luascripts/public/2628fda2a83cbe10dfe4addd5c8b0a8e7a45ae6cdf7ea11a3a8e042ba6156e40/download"
+    ["Universal"] = "https://api.jnkie.com/api/v1/luascripts/public/a9e00cedd687fac9d26e77390a27e173b5fa4dbe2e5aaa0803905e59f4a199d5/download",
+    ["ExploitAbuse"] = "https://api.jnkie.com/api/v1/luascripts/public/9dae75b0ab38bc880f9b187ad31f68a26cdc7c2820ac95a9e55f9214a9cc9806/download",
 }
 
 local ScriptLink = Supports[tostring(game.PlaceId)] or Supports["Universal"]
@@ -145,7 +146,7 @@ end)
 
 ExploitBtn.MouseButton1Click:Connect(function()
     closeUI()
-    loadstring(game:HttpGet(getgenv().MeMeRStorage.."Scripts/ExploitVer.lua"))()
+    loadstring(game:HttpGet(Supports["ExploitAbuse"]))()
 end)
 
 CancelBtn.MouseEnter:Connect(function() handleBtnHover(CancelBtn, true) end)
