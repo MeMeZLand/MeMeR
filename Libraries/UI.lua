@@ -5759,6 +5759,7 @@ function Compkiller.new(Config)
 	WindowLabel.TextColor3 = Compkiller.Colors.SwitchColor
 	WindowLabel.TextSize = Config.TextSize
 	WindowLabel.TextXAlignment = Enum.TextXAlignment.Left
+	WindowLabel.RichText = true
 
 	table.insert(Compkiller.Elements.SwitchColor , {
 		Element = WindowLabel,
